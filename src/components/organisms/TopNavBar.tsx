@@ -2,11 +2,10 @@ import { useState } from 'react';
 
 import { useAppStore } from '../../store/useAppStore';
 
-export default function TopNavBar(props: {
-  brandLabel?: string;
-  onPrimaryAction?: () => void;
-}) {
-  const { brandLabel = 'SVG.js Studio', onPrimaryAction } = props;
+const GITHUB_REPO_URL = 'https://github.com/hblab-duongdv1/svgjs-demo';
+
+export default function TopNavBar(props: { brandLabel?: string }) {
+  const { brandLabel = 'SVG.js Studio' } = props;
   const activePage = useAppStore((s) => s.activePage);
   const setActivePage = useAppStore((s) => s.setActivePage);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -82,22 +81,24 @@ export default function TopNavBar(props: {
             </span>
           </button>
 
-          <button
-            type="button"
-            className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-bold text-on-primary transition-all hover:bg-primary-container active:scale-95 sm:inline-flex sm:px-4"
-            onClick={onPrimaryAction}
+          <a
+            href={GITHUB_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-bold text-on-primary transition-all hover:bg-primary-container active:scale-95 sm:inline-flex sm:items-center sm:px-4"
           >
-            Deploy
-          </button>
+            GitHub
+          </a>
 
-          <button
-            type="button"
+          <a
+            href={GITHUB_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-on-primary sm:hidden"
-            aria-label="Deploy"
-            onClick={onPrimaryAction}
+            aria-label="View repository on GitHub"
           >
-            <span className="material-symbols-outlined text-xl">rocket_launch</span>
-          </button>
+            <span className="material-symbols-outlined text-xl">open_in_new</span>
+          </a>
 
           <div className="hidden gap-2 text-on-secondary-container sm:flex sm:gap-3">
             <span className="material-symbols-outlined cursor-pointer transition-colors hover:text-primary">
