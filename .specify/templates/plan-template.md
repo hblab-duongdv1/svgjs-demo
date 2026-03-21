@@ -31,7 +31,34 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+*GATE: Tech stack clarity* - Targeting MUST be explicit (`React` + `TypeScript` + `SVG.js`) and any
+deviation MUST be justified.
+
+*GATE: Testability plan* - Each highest-priority user story MUST include an independent test approach
+(unit tests for deterministic logic; integration tests for interaction flows).
+
+*GATE: SVG lifecycle correctness* - The spec/work plan MUST include a cleanup strategy for SVG instances,
+event listeners, and animation loops (unmount stops everything). It MUST also document svg.js update
+idioms (use instance APIs like `attr()`/`move()`/`rotate()`/`animate()` instead of direct DOM/style
+edits) and explicit handler teardown (e.g., `.off()` or instance/element `.remove()` in cleanup).
+
+*GATE: Performance intent* - The plan MUST state performance expectations for demo interactions and note
+where SVG updates are batched/minimized.
+
+*GATE: Design token compliance* - The plan MUST ensure UI styling uses the design system tokens
+palette/typography and MUST enforce the absolute rules: no `1px` borders for layout/sectioning
+and floating elements MUST use the Ambient Shadow `0 24px 48px -12px rgba(26, 27, 34, 0.08)`.
+*GATE: Professional delivery* - The plan MUST include documentation and error/diagnostic expectations
+for demo-driven execution.
+
+*GATE: Editor state & history integrity* - The plan MUST include explicit handling for element
+state transitions, undo/redo history stack behavior, and keyboard shortcuts.
+
+*GATE: Tool system decoupling* - The plan MUST separate tool logic (select/draw/edit) from
+canvas renderer and from the editor store using clear boundaries to avoid tight coupling.
+
+*GATE: Export/import correctness* - The plan MUST define deterministic export JSON and specify
+expected load/reload behavior (including error handling and user feedback).
 
 ## Project Structure
 

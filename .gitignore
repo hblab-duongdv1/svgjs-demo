@@ -1,0 +1,19 @@
+node_modules
+dist
+build
+.DS_Store
+coverage
+*.log
+.env
+.env.*
+.vscode
+.idea
+.vite
+.vitest
+
+# Speckit
+.cursor
+.specify
+.firebase
+docs
+specs
