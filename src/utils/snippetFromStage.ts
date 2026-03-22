@@ -25,6 +25,40 @@ export function snippetFromStage(
     ].join('\n');
   }
 
+  if (activeModuleId === 'showcase-realtime-chart') {
+    return [
+      `// Active module: ${activeModuleId} (Realtime dashboard)`,
+      '// Data: ChartDataModel + MockChartStreamConnection (features/realtime-chart/services)',
+      '// Render: RealtimeLineChartEngine — rAF syncFrame, min–max decimation',
+      '// UI state: useRealtimeChartStore (series visibility, follow, stream on/off)',
+      '',
+      "import { RealtimeLineChartEngine } from '../features/realtime-chart'",
+      '// new RealtimeLineChartEngine(mountEl).mount(); engine.syncFrame(model, view)',
+    ].join('\n');
+  }
+
+  if (activeModuleId === 'showcase-graph-engine') {
+    return [
+      `// Active module: ${activeModuleId} (Workflow graph)`,
+      '// Model: GraphDocModel + NormalizedGraph (nodes/edges by id)',
+      '// Commands: AddNodeCommand, MoveNodesCommand, RemoveNodesCommand, AddEdgeCommand',
+      '// Render: GraphSvgEngine — virtualized node groups, incremental edge paths',
+      '',
+      "import { GraphDocModel, GraphSvgEngine } from '../features/graph-engine'",
+    ].join('\n');
+  }
+
+  if (activeModuleId === 'showcase-floor-map') {
+    return [
+      `// Active module: ${activeModuleId} (Warehouse floor)`,
+      '// Data: useFloorMapStore (zones, runtime, assets, layers, selection)',
+      '// Hit test: ZoneSpatialGrid (world coords) — no elementFromPoint',
+      '// Render: FloorMapSvgEngine — world matrix pan/zoom, per-zone SVG groups',
+      '',
+      "import { FloorMapSvgEngine, useFloorMapStore } from '../features/floor-map'",
+    ].join('\n');
+  }
+
   const moduleProps = {
     duration: stage.durationMs,
     fill: stage.fillColor,

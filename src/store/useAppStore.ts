@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type AppPage = 'showcase' | 'docs' | 'community';
+export type AppPage = 'showcase' | 'docs';
 
 export type AppStore = {
   activePage: AppPage;
@@ -9,14 +9,14 @@ export type AppStore = {
   setActiveModuleId: (id: string) => void;
 };
 
-const defaultActiveModuleId = 'showcase-game-demo';
+const defaultActiveModuleId = 'showcase-floor-map';
 
 export const useAppStore = create<AppStore>((set) => ({
   activePage: 'showcase',
   setActivePage: (page) =>
     set(
       page === 'showcase'
-        ? { activePage: page, activeModuleId: 'showcase-game-demo' }
+        ? { activePage: page, activeModuleId: defaultActiveModuleId }
         : { activePage: page },
     ),
   activeModuleId: defaultActiveModuleId,

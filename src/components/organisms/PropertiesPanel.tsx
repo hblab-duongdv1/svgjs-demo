@@ -20,6 +20,9 @@ export default function PropertiesPanel(props: {
   } = props;
 
   const isGameDemo = selectedModuleId === 'showcase-game-demo';
+  const isRealtimeChart = selectedModuleId === 'showcase-realtime-chart';
+  const isGraphEngine = selectedModuleId === 'showcase-graph-engine';
+  const showStageControls = !isGameDemo && !isRealtimeChart && !isGraphEngine;
   const flags = getModulePropertyFlags(selectedModuleId);
 
   return (
@@ -64,8 +67,54 @@ export default function PropertiesPanel(props: {
           </section>
         ) : null}
 
+        {isRealtimeChart ? (
+          <section className="mb-6 space-y-3 rounded-2xl bg-surface-container-highest p-4 shadow-[var(--shadow-ambient)]">
+            <p className="text-xs font-bold text-primary">Realtime chart</p>
+            <p className="text-xs leading-relaxed text-on-surface-variant">
+              Streaming mock uses{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                MockChartStreamConnection
+              </code>
+              ; rendering uses{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                RealtimeLineChartEngine
+              </code>{' '}
+              on a dedicated rAF loop. Series toggles and transport state live in{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                useRealtimeChartStore
+              </code>
+              .
+            </p>
+          </section>
+        ) : null}
+
+        {isGraphEngine ? (
+          <section className="mb-6 space-y-3 rounded-2xl bg-surface-container-highest p-4 shadow-[var(--shadow-ambient)]">
+            <p className="text-xs font-bold text-primary">Graph engine</p>
+            <p className="text-xs leading-relaxed text-on-surface-variant">
+              Data: normalized{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                NormalizedGraph
+              </code>{' '}
+              +{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                GraphDocModel
+              </code>
+              . Commands: undo/redo. Render:{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                GraphSvgEngine
+              </code>{' '}
+              with viewport culling. UI selection/tooling:{' '}
+              <code className="font-mono text-[10px] text-on-surface">
+                useGraphUiStore
+              </code>
+              .
+            </p>
+          </section>
+        ) : null}
+
         <div className="space-y-6">
-          {!isGameDemo && flags.duration ? (
+          {showStageControls && flags.duration ? (
             <section className="space-y-3 rounded-lg bg-surface-container-highest p-4">
               <label className="block text-xs font-bold text-secondary">
                 Duration (ms)
@@ -90,7 +139,7 @@ export default function PropertiesPanel(props: {
             </section>
           ) : null}
 
-          {!isGameDemo && flags.fillColor ? (
+          {showStageControls && flags.fillColor ? (
             <section className="space-y-3 rounded-lg bg-surface-container-highest p-4">
               <label className="block text-xs font-bold text-secondary">
                 Fill Color
@@ -121,7 +170,7 @@ export default function PropertiesPanel(props: {
             </section>
           ) : null}
 
-          {!isGameDemo && flags.strokeWidth ? (
+          {showStageControls && flags.strokeWidth ? (
             <section className="space-y-3 rounded-lg bg-surface-container-highest p-4">
               <label className="block text-xs font-bold text-secondary">
                 Stroke Width
@@ -146,7 +195,7 @@ export default function PropertiesPanel(props: {
             </section>
           ) : null}
 
-          {!isGameDemo && flags.easing ? (
+          {showStageControls && flags.easing ? (
             <section className="space-y-3 rounded-lg bg-surface-container-highest p-4">
               <label className="block text-xs font-bold text-secondary">
                 Easing Function
@@ -167,7 +216,7 @@ export default function PropertiesPanel(props: {
             </section>
           ) : null}
 
-          {!isGameDemo && flags.panZoom ? (
+          {showStageControls && flags.panZoom ? (
             <section className="space-y-4 rounded-lg bg-surface-container-highest p-4">
               <p className="text-xs font-bold text-secondary">Pan / Zoom</p>
               <label className="flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-surface-container-lowest px-3 py-2">

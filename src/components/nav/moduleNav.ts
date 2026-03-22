@@ -19,8 +19,10 @@ export const MODULE_NAV_GROUPS: ModuleNavGroup[] = [
     label: 'Showcase',
     icon: 'view_quilt',
     items: [
+      { id: 'showcase-floor-map', label: 'Floor map' },
+      { id: 'showcase-graph-engine', label: 'Graph engine' },
+      { id: 'showcase-realtime-chart', label: 'Realtime chart' },
       { id: 'showcase-game-demo', label: 'Game demo' },
-      { id: 'showcase-plugins', label: 'Plugin demo' },
     ],
   },
   {

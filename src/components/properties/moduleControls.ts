@@ -29,6 +29,9 @@ const FALLBACK: ModulePropertyFlags = {
 
 const FLAGS: Record<string, ModulePropertyFlags> = {
   'showcase-game-demo': NONE,
+  'showcase-realtime-chart': NONE,
+  'showcase-graph-engine': NONE,
+  'showcase-floor-map': NONE,
 
   'showcase-plugins': {
     fillColor: true,

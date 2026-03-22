@@ -3,6 +3,9 @@ import { useMemo, useState } from 'react';
 import GameCanvas from '../components/organisms/GameCanvas';
 import GameDashboard from '../components/organisms/GameDashboard';
 import SidebarMenu from '../components/organisms/SidebarMenu';
+import GraphEditorPanel from '../features/graph-engine/components/GraphEditorPanel';
+import FloorMapPanel from '../features/floor-map/components/FloorMapPanel';
+import RealtimeChartPanel from '../features/realtime-chart/components/RealtimeChartPanel';
 import PropertiesPanel from '../components/organisms/PropertiesPanel';
 import SvgCanvas from '../features/svg-playground/components/SvgCanvas';
 import { useAppStore } from '../store/useAppStore';
@@ -37,6 +40,9 @@ export default function ShowcasePage() {
   );
 
   const isGameDemo = activeModuleId === 'showcase-game-demo';
+  const isRealtimeChart = activeModuleId === 'showcase-realtime-chart';
+  const isGraphEngine = activeModuleId === 'showcase-graph-engine';
+  const isFloorMap = activeModuleId === 'showcase-floor-map';
 
   const [modulesDrawerOpen, setModulesDrawerOpen] = useState(false);
   const [propertiesDrawerOpen, setPropertiesDrawerOpen] = useState(false);
@@ -54,7 +60,7 @@ export default function ShowcasePage() {
   const anyDrawerOpen = modulesDrawerOpen || propertiesDrawerOpen;
 
   return (
-    <main className="relative flex h-[calc(100vh-4rem)]">
+    <main className="relative flex h-[calc(100vh-4rem)] min-h-0">
       {anyDrawerOpen ? (
         <button
           type="button"
@@ -73,6 +79,21 @@ export default function ShowcasePage() {
         <section className="relative flex flex-grow flex-col items-center gap-6 overflow-y-auto bg-surface p-4 md:ml-64 md:mr-80 md:p-8">
           <GameDashboard />
           <GameCanvas />
+        </section>
+      ) : isRealtimeChart ? (
+        <section className="relative flex flex-grow flex-col items-center gap-6 overflow-y-auto bg-surface p-4 md:ml-64 md:mr-80 md:p-8">
+          <RealtimeChartPanel />
+        </section>
+      ) : isGraphEngine ? (
+        <section className="relative flex flex-grow flex-col items-center gap-6 overflow-y-auto bg-surface p-4 md:ml-64 md:mr-80 md:p-8">
+          <GraphEditorPanel />
+        </section>
+      ) : isFloorMap ? (
+        <section
+          className="relative flex min-h-0 flex-grow flex-col items-center gap-6 overflow-y-auto overflow-x-hidden bg-surface p-4 [overflow-anchor:none] md:ml-64 md:mr-80 md:p-8"
+          style={{ overflowAnchor: 'none' }}
+        >
+          <FloorMapPanel />
         </section>
       ) : (
         <SvgCanvas activeModule={activeModuleId} moduleProps={moduleProps} />

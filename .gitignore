@@ -12,8 +12,8 @@ coverage
 .vitest
 
 # Speckit
-.cursor
-.specify
-.firebase
-docs
-specs
+.cursor/*
+.specify/*
+.firebase/*
+docs/*
+specs/*

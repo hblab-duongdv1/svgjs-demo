@@ -10,7 +10,7 @@ export default function TopNavBar(props: { brandLabel?: string }) {
   const setActivePage = useAppStore((s) => s.setActivePage);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const navItem = (page: 'docs' | 'showcase' | 'community', label: string) => {
+  const navItem = (page: 'docs' | 'showcase', label: string) => {
     const isActive = activePage === page;
     return (
       <button
@@ -29,12 +29,12 @@ export default function TopNavBar(props: { brandLabel?: string }) {
     );
   };
 
-  const goPage = (page: 'docs' | 'showcase' | 'community') => {
+  const goPage = (page: 'docs' | 'showcase') => {
     setActivePage(page);
     setMobileNavOpen(false);
   };
 
-  const mobileNavItem = (page: 'docs' | 'showcase' | 'community', label: string) => {
+  const mobileNavItem = (page: 'docs' | 'showcase', label: string) => {
     const isActive = activePage === page;
     return (
       <button
@@ -64,7 +64,6 @@ export default function TopNavBar(props: { brandLabel?: string }) {
           <nav className="hidden gap-6 md:flex" aria-label="Primary">
             {navItem('showcase', 'Showcase')}
             {navItem('docs', 'Documentation')}
-            {navItem('community', 'Community')}
           </nav>
         </div>
 
@@ -125,7 +124,6 @@ export default function TopNavBar(props: { brandLabel?: string }) {
           >
             {mobileNavItem('showcase', 'Showcase')}
             {mobileNavItem('docs', 'Documentation')}
-            {mobileNavItem('community', 'Community')}
           </nav>
         </>
       ) : null}

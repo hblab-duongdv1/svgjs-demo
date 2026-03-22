@@ -6,6 +6,7 @@ const sections = [
   { id: 'overview', title: 'Overview' },
   { id: 'architecture', title: 'Architecture' },
   { id: 'capabilities', title: 'SVG.js capabilities' },
+  { id: 'feature-showcases', title: 'Feature showcases' },
   { id: 'game-demo', title: 'Game demo' },
   { id: 'showcase-code', title: 'Code walkthrough' },
   { id: 'registry', title: 'Module registry' },
@@ -133,11 +134,18 @@ export default function DocumentationPage() {
               <strong className="font-semibold text-on-surface">
                 Showcase
               </strong>{' '}
-              in the top nav to try modules such as{' '}
-              <code className="font-mono text-[11px]">showcase-game-demo</code>{' '}
-              (mouse &amp; hammer mini-game),{' '}
-              <code className="font-mono text-[11px]">showcase-plugins</code>,
-              basics, interactions, animations, and advanced SVG topics.
+              in the top nav:{' '}
+              <code className="font-mono text-[11px]">showcase-realtime-chart</code>
+              ,{' '}
+              <code className="font-mono text-[11px]">showcase-graph-engine</code>
+              ,{' '}
+              <code className="font-mono text-[11px]">showcase-floor-map</code>,{' '}
+              <code className="font-mono text-[11px]">showcase-game-demo</code>,{' '}
+              <code className="font-mono text-[11px]">showcase-plugins</code>, plus
+              basics, interactions, animations, and advanced SVG topics. Heavy demos
+              swap <code className="font-mono text-[11px]">SvgCanvas</code> for a
+              dedicated React panel; the registry still holds a placeholder key per
+              module id.
             </p>
           </SectionCard>
 
@@ -185,6 +193,29 @@ export default function DocumentationPage() {
                 (stage / timeline props),{' '}
                 <code className="font-mono text-[11px]">useGameStore</code>{' '}
                 (game demo score / timer / round state)
+              </li>
+              <li>
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/realtime-chart/
+                </code>{' '}
+                — streaming line chart engine + Zustand (
+                <code className="font-mono text-[11px]">RealtimeChartPanel</code>)
+              </li>
+              <li>
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/graph-engine/
+                </code>{' '}
+                — graph model, commands,{' '}
+                <code className="font-mono text-[11px]">GraphSvgEngine</code>,{' '}
+                <code className="font-mono text-[11px]">GraphEditorPanel</code>
+              </li>
+              <li>
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/floor-map/
+                </code>{' '}
+                — warehouse floor map,{' '}
+                <code className="font-mono text-[11px]">FloorMapSvgEngine</code>,{' '}
+                <code className="font-mono text-[11px]">useFloorMapStore</code>
               </li>
             </ul>
             <p className="text-on-surface-variant">
@@ -266,18 +297,146 @@ export default function DocumentationPage() {
                 <p className="text-xs font-bold uppercase tracking-wide text-primary">
                   Showcase
                 </p>
-                <PillList items={['showcase-game-demo', 'showcase-plugins']} />
+                <PillList
+                  items={[
+                    'showcase-realtime-chart',
+                    'showcase-graph-engine',
+                    'showcase-floor-map',
+                    'showcase-game-demo',
+                    'showcase-plugins',
+                  ]}
+                />
                 <p className="mt-2 text-xs text-on-surface-variant">
-                  <strong className="text-on-surface">Game demo</strong>: svg.js
-                  + hammer cursor, score/timer (
+                  <strong className="text-on-surface">Realtime chart</strong>: high-rate
+                  mock stream, decimated paths (
+                  <code className="font-mono">RealtimeLineChartEngine</code>).{' '}
+                  <strong className="text-on-surface">Graph engine</strong>: workflow
+                  graph, undo/redo, virtualization.{' '}
+                  <strong className="text-on-surface">Floor map</strong>: zones,
+                  pan/zoom, spatial hit grid.{' '}
+                  <strong className="text-on-surface">Game demo</strong>: svg.js +
+                  hammer (
                   <code className="font-mono">useGameStore</code>).{' '}
                   <strong className="text-on-surface">Plugin demo</strong>:{' '}
                   <code className="font-mono">draggable()</code>,{' '}
                   <code className="font-mono">panZoom()</code>,{' '}
-                  <code className="font-mono">.animate()</code> + Zustand props.
+                  <code className="font-mono">.animate()</code> + Zustand.
                 </p>
               </div>
             </div>
+          </SectionCard>
+
+          <SectionCard id="feature-showcases" title="Feature showcases (Showcase)">
+            <p>
+              These modules render outside the shared{' '}
+              <code className="font-mono text-[11px]">SvgCanvas</code> pipeline but
+              stay registered in{' '}
+              <code className="font-mono text-[11px]">registry.ts</code> with a
+              no-op placeholder so ids stay valid. Entry:{' '}
+              <code className="font-mono text-[11px]">ShowcasePage.tsx</code>.
+            </p>
+
+            <h3 className="text-base font-bold text-on-surface">
+              Realtime chart —{' '}
+              <code className="font-mono text-sm">showcase-realtime-chart</code>
+            </h3>
+            <ul className="list-inside list-disc space-y-2 text-on-surface-variant">
+              <li>
+                Path:{' '}
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/realtime-chart/
+                </code>
+              </li>
+              <li>
+                <code className="font-mono text-[11px]">ChartDataModel</code>, ring
+                buffer, min–max decimation;{' '}
+                <code className="font-mono text-[11px]">RealtimeLineChartEngine</code>{' '}
+                syncs on <code className="font-mono text-[11px]">requestAnimationFrame</code>
+              </li>
+              <li>
+                UI: <code className="font-mono text-[11px]">RealtimeChartPanel</code>,{' '}
+                <code className="font-mono text-[11px]">useRealtimeChartStore</code>
+              </li>
+            </ul>
+
+            <h3 className="mt-8 text-base font-bold text-on-surface">
+              Graph engine —{' '}
+              <code className="font-mono text-sm">showcase-graph-engine</code>
+            </h3>
+            <ul className="list-inside list-disc space-y-2 text-on-surface-variant">
+              <li>
+                Path:{' '}
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/graph-engine/
+                </code>
+              </li>
+              <li>
+                <code className="font-mono text-[11px]">GraphDocModel</code>, command
+                history, JSON import/export;{' '}
+                <code className="font-mono text-[11px]">GraphSvgEngine</code> applies{' '}
+                <code className="font-mono text-[11px]">matrix(scale, pan)</code> on the
+                world group
+              </li>
+              <li>
+                Zoom: wheel toward cursor. Pan: middle mouse;{' '}
+                <strong className="text-on-surface">Alt + drag</strong>;{' '}
+                <strong className="text-on-surface">Space + drag</strong> (Space tracked
+                via <code className="font-mono text-[11px]">keydown</code>/
+                <code className="font-mono text-[11px]">keyup</code>, not{' '}
+                <code className="font-mono text-[11px]">PointerEvent.getModifierState('Space')</code>
+                ). Connect tool: drag empty canvas to pan
+              </li>
+              <li>
+                Hook:{' '}
+                <code className="font-mono text-[11px]">useGraphEditorRuntime</code>; UI:{' '}
+                <code className="font-mono text-[11px]">GraphEditorPanel</code>
+              </li>
+            </ul>
+
+            <h3 className="mt-8 text-base font-bold text-on-surface">
+              Floor map —{' '}
+              <code className="font-mono text-sm">showcase-floor-map</code>
+            </h3>
+            <ul className="list-inside list-disc space-y-2 text-on-surface-variant">
+              <li>
+                Path:{' '}
+                <code className="font-mono text-[11px] text-on-surface">
+                  features/floor-map/
+                </code>{' '}
+                — custom SVG map (no Leaflet / Mapbox)
+              </li>
+              <li>
+                Data: <code className="font-mono text-[11px]">useFloorMapStore</code>;
+                hit tests: <code className="font-mono text-[11px]">ZoneSpatialGrid</code>{' '}
+                in world space
+              </li>
+              <li>
+                Render: <code className="font-mono text-[11px]">FloorMapSvgEngine</code>{' '}
+                — zone groups use{' '}
+                <code className="font-mono text-[11px]">
+                  {`transform({ translateX, translateY })`}
+                </code>{' '}
+                (avoid <code className="font-mono text-[11px]">Group.move</code>, which
+                accumulates drift). Grid extent unions content bbox with the visible
+                viewport using{' '}
+                <code className="font-mono text-[11px]">viewportPxToWorld</code>
+              </li>
+              <li>
+                Mock layout defaults to <strong className="text-on-surface">14×8</strong>{' '}
+                bays (<code className="font-mono text-[11px]">buildMockWarehouseFloor</code>
+                ). Pan/zoom: wheel, middle mouse, Alt or Space + drag; multi-select with
+                Cmd/Ctrl + click
+              </li>
+              <li>
+                UI:{' '}
+                <code className="font-mono text-[11px]">FloorMapPanel</code>, hook{' '}
+                <code className="font-mono text-[11px]">useFloorMapRuntime</code>
+              </li>
+            </ul>
+
+            <CodeBlock title="Public re-exports (examples)">{`// features/realtime-chart/index.ts
+// features/graph-engine/index.ts
+// features/floor-map/index.ts`}</CodeBlock>
           </SectionCard>
 
           <SectionCard id="game-demo" title="Game demo — mice &amp; hammer">
@@ -564,7 +723,7 @@ export function renderSvgModule(draw: Svg, activeModule: string, moduleProps: Sv
               <code className="font-mono text-[11px]">useAppStore</code> holds{' '}
               <strong className="text-on-surface">activePage</strong> (
               <code className="font-mono text-[11px]">
-                showcase | docs | community
+                showcase | docs
               </code>
               ) and <strong className="text-on-surface">activeModuleId</strong>.{' '}
               <code className="font-mono text-[11px]">useEditorStore</code>{' '}
@@ -573,6 +732,11 @@ export function renderSvgModule(draw: Svg, activeModule: string, moduleProps: Sv
               mirrored into{' '}
               <code className="font-mono text-[11px]">SvgCanvas</code> as{' '}
               <code className="font-mono text-[11px]">moduleProps</code>.
+              Feature panels add their own Zustand slices (e.g.{' '}
+              <code className="font-mono text-[11px]">useGraphUiStore</code>,{' '}
+              <code className="font-mono text-[11px]">useFloorMapStore</code>,{' '}
+              <code className="font-mono text-[11px]">useRealtimeChartStore</code>
+              ).
             </p>
             <CodeBlock title="Navigation store">{`import { useAppStore } from '../store/useAppStore';
 

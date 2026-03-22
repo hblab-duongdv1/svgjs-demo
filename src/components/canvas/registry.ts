@@ -37,12 +37,34 @@ const drawTargetPracticePlaceholder: SvgModuleRenderer = (draw) => {
   prepareStage(draw);
 };
 
+/** Realtime dashboard — rendering lives in `RealtimeChartPanel` + `RealtimeLineChartEngine`. */
+const drawRealtimeChartPlaceholder: SvgModuleRenderer = (draw) => {
+  prepareStage(draw);
+};
+
+const drawGraphEnginePlaceholder: SvgModuleRenderer = (draw) => {
+  prepareStage(draw);
+};
+
+const drawFloorMapPlaceholder: SvgModuleRenderer = (draw) => {
+  prepareStage(draw);
+};
+
 export const MODULE_RENDERERS: Record<string, SvgModuleRenderer> = {
   /** Showcase: draggable + panZoom + props-driven motion (Zustand → PropertiesPanel). */
   'showcase-plugins': drawPluginShowcase,
 
   /** Game demo mini-game — real rendering lives in `GameCanvas.tsx`. */
   'showcase-game-demo': drawTargetPracticePlaceholder,
+
+  /** High-frequency line chart — imperative SVG.js in `features/realtime-chart/`. */
+  'showcase-realtime-chart': drawRealtimeChartPlaceholder,
+
+  /** Workflow graph — `GraphEditorPanel` + `GraphSvgEngine` in `features/graph-engine/`. */
+  'showcase-graph-engine': drawGraphEnginePlaceholder,
+
+  /** Warehouse floor — `FloorMapPanel` + `FloorMapSvgEngine` in `features/floor-map/`. */
+  'showcase-floor-map': drawFloorMapPlaceholder,
 
   /** Default “Basics” tab in sidebar (`SidebarMenu`). */
   basics: drawShapes,

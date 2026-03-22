@@ -17,7 +17,7 @@ export default function SidebarMenu(props: {
   const {
     items,
     groups = MODULE_NAV_GROUPS,
-    selectedModuleId = 'showcase-game-demo',
+    selectedModuleId = 'showcase-floor-map',
     onSelectModule,
     mobileOpen = true,
   } = props;

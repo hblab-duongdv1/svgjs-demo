@@ -88,7 +88,7 @@ export default function GameCanvas() {
   };
 
   return (
-    <div className="relative flex w-full max-w-4xl flex-1 flex-col justify-center">
+    <div className="relative flex w-full max-w-4xl flex-1 flex-col justify-start">
       <div
         ref={playfieldRef}
         className={[
