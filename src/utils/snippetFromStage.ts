@@ -66,6 +66,12 @@ export function snippetFromStage(
     easing: stage.easingFunction,
     panEnabled: stage.panEnabled,
     zoomEnabled: stage.zoomEnabled,
+    forceUseGroupColors: stage.forceUseGroupColors,
+    forceNodeColor: stage.forceNodeColor,
+    forceNodeCount: stage.forceNodeCount,
+    forceNodeSize: stage.forceNodeSize,
+    forceLinkDistance: stage.forceLinkDistance,
+    forceRepulsion: stage.forceRepulsion,
   };
 
   return [

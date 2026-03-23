@@ -32,6 +32,7 @@ const FLAGS: Record<string, ModulePropertyFlags> = {
   'showcase-realtime-chart': NONE,
   'showcase-graph-engine': NONE,
   'showcase-floor-map': NONE,
+  'showcase-force-graph': NONE,
 
   'showcase-plugins': {
     fillColor: true,

@@ -14,7 +14,7 @@ import {
   drawHoverTransitions,
   drawPanZoom,
 } from './interactions';
-import { drawPluginShowcase } from './showcase';
+import { drawForceGraphShowcase, drawPluginShowcase } from './showcase';
 import { prepareStage } from '../../utils/canvasHelpers';
 import { SVG_STYLE_TOKENS } from '../../utils/styleTokens';
 import type { SvgModuleProps, SvgModuleRenderer } from './types';
@@ -53,6 +53,7 @@ const drawFloorMapPlaceholder: SvgModuleRenderer = (draw) => {
 export const MODULE_RENDERERS: Record<string, SvgModuleRenderer> = {
   /** Showcase: draggable + panZoom + props-driven motion (Zustand → PropertiesPanel). */
   'showcase-plugins': drawPluginShowcase,
+  'showcase-force-graph': drawForceGraphShowcase,
 
   /** Game demo mini-game — real rendering lives in `GameCanvas.tsx`. */
   'showcase-game-demo': drawTargetPracticePlaceholder,

@@ -22,6 +22,7 @@ export default function PropertiesPanel(props: {
   const isGameDemo = selectedModuleId === 'showcase-game-demo';
   const isRealtimeChart = selectedModuleId === 'showcase-realtime-chart';
   const isGraphEngine = selectedModuleId === 'showcase-graph-engine';
+  const isForceGraph = selectedModuleId === 'showcase-force-graph';
   const showStageControls = !isGameDemo && !isRealtimeChart && !isGraphEngine;
   const flags = getModulePropertyFlags(selectedModuleId);
 
@@ -110,6 +111,136 @@ export default function PropertiesPanel(props: {
               </code>
               .
             </p>
+          </section>
+        ) : null}
+
+        {isForceGraph ? (
+          <section className="mb-6 space-y-4 rounded-2xl bg-surface-container-highest p-4 shadow-[var(--shadow-ambient)]">
+            <p className="text-xs font-bold text-primary">Force graph</p>
+
+            <label className="block space-y-2">
+              <span className="block text-xs font-bold text-secondary">Node count</span>
+              <div className="flex items-center gap-4">
+                <input
+                  className="h-1.5 w-full cursor-pointer appearance-none rounded-lg accent-primary"
+                  type="range"
+                  min={10}
+                  max={77}
+                  step={1}
+                  value={stageConfiguration.forceNodeCount}
+                  aria-label="Force graph node count"
+                  onChange={(e) =>
+                    onStageConfigChange({ forceNodeCount: Number(e.target.value) })
+                  }
+                />
+                <span className="w-10 text-right font-mono text-xs font-bold text-primary tabular-nums">
+                  {stageConfiguration.forceNodeCount}
+                </span>
+              </div>
+            </label>
+
+            <label className="block space-y-2">
+              <span className="block text-xs font-bold text-secondary">Node size</span>
+              <div className="flex items-center gap-4">
+                <input
+                  className="h-1.5 w-full cursor-pointer appearance-none rounded-lg accent-primary"
+                  type="range"
+                  min={2}
+                  max={18}
+                  step={1}
+                  value={stageConfiguration.forceNodeSize}
+                  aria-label="Force graph node size"
+                  onChange={(e) =>
+                    onStageConfigChange({ forceNodeSize: Number(e.target.value) })
+                  }
+                />
+                <span className="w-10 text-right font-mono text-xs font-bold text-primary tabular-nums">
+                  {stageConfiguration.forceNodeSize}px
+                </span>
+              </div>
+            </label>
+
+            <label className="block space-y-2">
+              <span className="block text-xs font-bold text-secondary">Link distance</span>
+              <div className="flex items-center gap-4">
+                <input
+                  className="h-1.5 w-full cursor-pointer appearance-none rounded-lg accent-primary"
+                  type="range"
+                  min={20}
+                  max={120}
+                  step={1}
+                  value={stageConfiguration.forceLinkDistance}
+                  aria-label="Force graph link distance"
+                  onChange={(e) =>
+                    onStageConfigChange({ forceLinkDistance: Number(e.target.value) })
+                  }
+                />
+                <span className="w-12 text-right font-mono text-xs font-bold text-primary tabular-nums">
+                  {stageConfiguration.forceLinkDistance}
+                </span>
+              </div>
+            </label>
+
+            <label className="block space-y-2">
+              <span className="block text-xs font-bold text-secondary">Repulsion</span>
+              <div className="flex items-center gap-4">
+                <input
+                  className="h-1.5 w-full cursor-pointer appearance-none rounded-lg accent-primary"
+                  type="range"
+                  min={400}
+                  max={8000}
+                  step={100}
+                  value={stageConfiguration.forceRepulsion}
+                  aria-label="Force graph repulsion"
+                  onChange={(e) =>
+                    onStageConfigChange({ forceRepulsion: Number(e.target.value) })
+                  }
+                />
+                <span className="w-12 text-right font-mono text-xs font-bold text-primary tabular-nums">
+                  {stageConfiguration.forceRepulsion}
+                </span>
+              </div>
+            </label>
+
+            <label className="flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-surface-container-lowest px-3 py-2">
+              <span className="text-xs font-semibold text-on-surface">
+                Color by group palette
+              </span>
+              <input
+                type="checkbox"
+                className="h-4 w-4 accent-primary"
+                checked={stageConfiguration.forceUseGroupColors}
+                onChange={(e) =>
+                  onStageConfigChange({ forceUseGroupColors: e.target.checked })
+                }
+              />
+            </label>
+
+            {!stageConfiguration.forceUseGroupColors ? (
+              <label className="block space-y-2">
+                <span className="block text-xs font-bold text-secondary">Node color</span>
+                <div className="flex items-center gap-3 rounded-lg bg-surface-container-lowest p-2">
+                  <div className="relative">
+                    <div
+                      className="h-8 w-8 rounded"
+                      style={{ backgroundColor: stageConfiguration.forceNodeColor }}
+                    />
+                    <input
+                      aria-label="Force graph node color"
+                      type="color"
+                      value={stageConfiguration.forceNodeColor}
+                      onChange={(e) =>
+                        onStageConfigChange({ forceNodeColor: e.target.value })
+                      }
+                      className="absolute inset-0 h-8 w-8 cursor-pointer opacity-0"
+                    />
+                  </div>
+                  <span className="font-mono text-xs text-on-surface tabular-nums">
+                    {stageConfiguration.forceNodeColor}
+                  </span>
+                </div>
+              </label>
+            ) : null}
           </section>
         ) : null}
 

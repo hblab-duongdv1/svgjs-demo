@@ -25,6 +25,14 @@ export default function SvgCanvas({
 
   const { duration, fill, strokeWidth, easing, panEnabled, zoomEnabled } =
     moduleProps;
+  const {
+    forceUseGroupColors,
+    forceNodeColor,
+    forceNodeCount,
+    forceNodeSize,
+    forceLinkDistance,
+    forceRepulsion,
+  } = moduleProps;
 
   useEffect(() => {
     const mountNode = canvasRef.current;
@@ -39,6 +47,12 @@ export default function SvgCanvas({
       easing,
       panEnabled,
       zoomEnabled,
+      forceUseGroupColors,
+      forceNodeColor,
+      forceNodeCount,
+      forceNodeSize,
+      forceLinkDistance,
+      forceRepulsion,
     });
 
     return () => {
@@ -59,6 +73,12 @@ export default function SvgCanvas({
     easing,
     panEnabled,
     zoomEnabled,
+    forceUseGroupColors,
+    forceNodeColor,
+    forceNodeCount,
+    forceNodeSize,
+    forceLinkDistance,
+    forceRepulsion,
   ]);
 
   return (

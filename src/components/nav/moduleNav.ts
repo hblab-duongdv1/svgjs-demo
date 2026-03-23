@@ -20,6 +20,7 @@ export const MODULE_NAV_GROUPS: ModuleNavGroup[] = [
     icon: 'view_quilt',
     items: [
       { id: 'showcase-floor-map', label: 'Floor map' },
+      { id: 'showcase-force-graph', label: 'Force graph' },
       { id: 'showcase-graph-engine', label: 'Graph engine' },
       { id: 'showcase-realtime-chart', label: 'Realtime chart' },
       { id: 'showcase-game-demo', label: 'Game demo' },

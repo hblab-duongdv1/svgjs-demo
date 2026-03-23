@@ -17,6 +17,12 @@ const defaultStageConfiguration: StageConfiguration = {
   easingFunction: 'easeInOutCubic',
   panEnabled: true,
   zoomEnabled: true,
+  forceUseGroupColors: true,
+  forceNodeColor: '#1f77b4',
+  forceNodeCount: 77,
+  forceNodeSize: 5,
+  forceLinkDistance: 44,
+  forceRepulsion: 2800,
 };
 
 const defaultEditorUIState: EditorUIState = {

@@ -35,6 +35,12 @@ export default function ShowcasePage() {
       easing: stageConfiguration.easingFunction,
       panEnabled: stageConfiguration.panEnabled,
       zoomEnabled: stageConfiguration.zoomEnabled,
+      forceUseGroupColors: stageConfiguration.forceUseGroupColors,
+      forceNodeColor: stageConfiguration.forceNodeColor,
+      forceNodeCount: stageConfiguration.forceNodeCount,
+      forceNodeSize: stageConfiguration.forceNodeSize,
+      forceLinkDistance: stageConfiguration.forceLinkDistance,
+      forceRepulsion: stageConfiguration.forceRepulsion,
     }),
     [stageConfiguration],
   );
